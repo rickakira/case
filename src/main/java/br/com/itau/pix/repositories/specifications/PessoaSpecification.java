@@ -49,7 +49,9 @@ public class PessoaSpecification {
                 predicates.add(criteria.equal(join.get("dataDesativacao"), search.dataInativacao()));
             }
 
-            predicates.add(criteria.equal(join.get("status"), Status.ATIVO));
+            if (Objects.isNull(search.dataInativacao())) {
+                predicates.add(criteria.equal(join.get("status"), Status.ATIVO.getStatus()));
+            }
             return criteria.and(predicates.toArray(new Predicate[0]));
         };
     }

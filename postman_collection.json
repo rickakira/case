@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "a35d5729-efb0-4347-90dc-55710f1cf5f9",
+		"name": "Case PIX",
+		"description": "Coleção dos endpoints disponíveis para inclusão de pessoa e chaves.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3168153"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "PESSOA FISICA",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"id_pessoa\", pm.response.json());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"string\",\r\n  \"sobrenome\": \"string\",\r\n  \"tipoConta\": \"CORRENTE\",\r\n  \"agencia\": 1,\r\n  \"conta\": 123\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}case/pessoas/fisica",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"pessoas",
+								"fisica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PESSOA JURIDICA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"id_pessoa\", pm.response.json());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"string\",\r\n  \"sobrenome\": \"string\",\r\n  \"tipoConta\": \"CORRENTE\",\r\n  \"agencia\": 1,\r\n  \"conta\": 123\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}case/pessoas/juridica",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"pessoas",
+								"juridica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHAVE ALEATORIO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"id_chave\", pm.response.json());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{local}}case/chaves/aleatorio/pessoa/{{id_pessoa}}/chave/a1b2c3",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"chaves",
+								"aleatorio",
+								"pessoa",
+								"{{id_pessoa}}",
+								"chave",
+								"a1b2c3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHAVE E-MAIL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{local}}case/chaves/email/pessoa/{{id_pessoa}}/chave/teste@email.com",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"chaves",
+								"email",
+								"pessoa",
+								"{{id_pessoa}}",
+								"chave",
+								"teste@email.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHAVE CPF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{local}}case/chaves/cpf/pessoa/{{id_pessoa}}/chave/92890225070",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"chaves",
+								"cpf",
+								"pessoa",
+								"{{id_pessoa}}",
+								"chave",
+								"92890225070"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHAVE CNPJ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/case/chaves/cnpj/pessoa/{{id_pessoa}}/chave/71006366000116",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"case",
+								"chaves",
+								"cnpj",
+								"pessoa",
+								"{{id_pessoa}}",
+								"chave",
+								"71006366000116"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHAVE CELULAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/case/chaves/celular/pessoa/{{id_pessoa}}?chave=+5511987654321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"case",
+								"chaves",
+								"celular",
+								"pessoa",
+								"{{id_pessoa}}"
+							],
+							"query": [
+								{
+									"key": "chave",
+									"value": "+5511987654321"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Todas as chamadas do tipo POST estão cadastradas nessa coleção"
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "PESSOA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"string\",\r\n  \"sobrenome\": \"string\",\r\n  \"tipoPessoa\": \"string\",\r\n  \"tipoConta\": \"POUPANCA\",\r\n  \"agencia\": 333,\r\n  \"conta\": 333\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}case/pessoas/{{id_pessoa}}",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"pessoas",
+								"{{id_pessoa}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "BUSCA CHAVES POR PESSOA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}case/chaves/pessoa/{{id_pessoa}}",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"chaves",
+								"pessoa",
+								"{{id_pessoa}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BUSCA POR ID E PARAMETROS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}case/pessoas?id={{id_pessoa}}",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{id_pessoa}}"
+								},
+								{
+									"key": "tipoChave",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "agencia",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "conta",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "nomeCorrentista",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "dataInclusao",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "dataInativacao",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "CHAVE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}case/chaves/{{id_chave}}",
+							"host": [
+								"{{local}}case"
+							],
+							"path": [
+								"chaves",
+								"{{id_chave}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

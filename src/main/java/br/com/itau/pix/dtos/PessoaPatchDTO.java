@@ -32,9 +32,6 @@ public class PessoaPatchDTO implements Json {
     private String sobrenome;
 
     @Enumerated(EnumType.STRING)
-    private String tipoPessoa;
-
-    @Enumerated(EnumType.STRING)
     @ValidaEnum(message = "Valor inválido para o Tipo de Conta. Somente são permitidos os seguintes valores: CORRENTE / POUPANÇA", enumClass = TipoConta.class)
     @NotNull(message = "O tipo de conta é obrigatório")
     private String tipoConta;

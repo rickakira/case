@@ -36,7 +36,7 @@ public class ChaveController implements Utils {
         return ResponseEntity.ok(id);
     }
 
-    @PostMapping("celular/pessoa/{idPessoa}")
+    @PostMapping("/celular/pessoa/{idPessoa}")
     public ResponseEntity<UUID> saveCelular(@PathVariable String idPessoa,
                                             @RequestParam String chave) {
 
@@ -46,7 +46,7 @@ public class ChaveController implements Utils {
         return ResponseEntity.ok(id);
     }
 
-    @PostMapping("cnpj/pessoa/{idPessoa}/chave/{chave}")
+    @PostMapping("/cnpj/pessoa/{idPessoa}/chave/{chave}")
     public ResponseEntity<UUID> saveCNPJ(@PathVariable String idPessoa,
                                          @PathVariable String chave) {
 
@@ -56,7 +56,7 @@ public class ChaveController implements Utils {
         return ResponseEntity.ok(id);
     }
 
-    @PostMapping("cpf/pessoa/{idPessoa}/chave/{chave}")
+    @PostMapping("/cpf/pessoa/{idPessoa}/chave/{chave}")
     public ResponseEntity<UUID> saveCPF(@PathVariable String idPessoa,
                                         @PathVariable String chave) {
 
@@ -66,7 +66,7 @@ public class ChaveController implements Utils {
         return ResponseEntity.ok(id);
     }
 
-    @PostMapping("email/pessoa/{idPessoa}/chave/{chave}")
+    @PostMapping("/email/pessoa/{idPessoa}/chave/{chave}")
     public ResponseEntity<UUID> saveEmail(@PathVariable String idPessoa,
                                           @PathVariable String chave) {
 
@@ -76,7 +76,7 @@ public class ChaveController implements Utils {
         return ResponseEntity.ok(id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ChaveDTO> delete(@PathVariable String id) {
 
         var chaveDTO = service.delete(id);
