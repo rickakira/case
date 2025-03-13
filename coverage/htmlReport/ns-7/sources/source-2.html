@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > TipoChave</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.itau.pix.enums</a>
+</div>
+
+<h1>Coverage Summary for Class: TipoChave (br.com.itau.pix.enums)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TipoChave</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.itau.pix.enums;
+&nbsp;
+&nbsp;import br.com.itau.pix.validators.interfaces.groups.*;
+&nbsp;import lombok.Getter;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.Objects;
+&nbsp;
+<b class="fc">&nbsp;@Getter</b>
+&nbsp;@RequiredArgsConstructor
+&nbsp;public enum TipoChave {
+&nbsp;
+<b class="fc">&nbsp;    CELULAR(&quot;celular&quot;, CelularGroup.class),</b>
+<b class="fc">&nbsp;    EMAIL(&quot;email&quot;, EmailGroup.class),</b>
+<b class="fc">&nbsp;    CPF(&quot;cpf&quot;, CPFGroup.class),</b>
+<b class="fc">&nbsp;    CNPJ(&quot;cnpj&quot;, CNPJGroup.class),</b>
+<b class="fc">&nbsp;    ALEATORIO(&quot;aleatorio&quot;, AleatorioGroup.class);</b>
+&nbsp;
+&nbsp;    private final String tipo;
+&nbsp;    private final Class&lt;?&gt; group;
+&nbsp;
+&nbsp;
+&nbsp;    public static TipoChave from(String value) {
+<b class="fc">&nbsp;        return Arrays.stream(TipoChave.values()).filter(t -&gt; Objects.equals(t.tipo, value)).findAny().orElse(null);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-13 12:40</div>
+</div>
+</body>
+</html>

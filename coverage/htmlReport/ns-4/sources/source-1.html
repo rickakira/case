@@ -1,0 +1,144 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Converter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.itau.pix.converters.interfaces</a>
+</div>
+
+<h1>Coverage Summary for Class: Converter (br.com.itau.pix.converters.interfaces)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Converter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.itau.pix.converters.interfaces;
+&nbsp;
+&nbsp;import org.springframework.util.CollectionUtils;
+&nbsp;
+&nbsp;import java.util.Collection;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Objects;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.function.Function;
+&nbsp;
+&nbsp;public interface Converter&lt;T,R&gt; extends Function&lt;T,R&gt; {
+&nbsp;
+&nbsp;    static &lt;T,R&gt; R to(T object, Converter&lt;T,R&gt; converter) {
+<b class="fc">&nbsp;        return Objects.nonNull(object) ? converter.apply(object) : null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    static &lt;T,R&gt; List&lt;R&gt; toList(Collection&lt;T&gt; objects, Converter&lt;T,R&gt; converter) {
+<b class="fc">&nbsp;        return CollectionUtils.isEmpty(objects) ? List.of() :</b>
+<b class="fc">&nbsp;                objects.stream().map(converter).toList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    default R apply(T target) {
+<b class="fc">&nbsp;        return Optional.ofNullable(target).map(this::convert).orElse(null);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    R convert(T target);
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-13 12:40</div>
+</div>
+</body>
+</html>

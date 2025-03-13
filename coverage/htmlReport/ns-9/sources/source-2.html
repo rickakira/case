@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PessoaSpecification</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.itau.pix.repositories.specifications</a>
+</div>
+
+<h1>Coverage Summary for Class: PessoaSpecification (br.com.itau.pix.repositories.specifications)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PessoaSpecification</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.itau.pix.repositories.specifications;
+&nbsp;
+&nbsp;import br.com.itau.pix.entities.Chave;
+&nbsp;import br.com.itau.pix.entities.Pessoa;
+&nbsp;import br.com.itau.pix.dtos.PessoaSearch;
+&nbsp;import br.com.itau.pix.enums.Status;
+&nbsp;import jakarta.persistence.criteria.Join;
+&nbsp;import jakarta.persistence.criteria.JoinType;
+&nbsp;import jakarta.persistence.criteria.Predicate;
+&nbsp;import lombok.AccessLevel;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import org.apache.commons.lang3.StringUtils;
+&nbsp;import org.springframework.data.jpa.domain.Specification;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;@NoArgsConstructor(access = AccessLevel.PRIVATE)
+&nbsp;public class PessoaSpecification {
+&nbsp;
+&nbsp;    public static Specification&lt;Pessoa&gt; filterBy(PessoaSearch search) {
+<b class="fc">&nbsp;        return (root, query, criteria) -&gt; {</b>
+<b class="fc">&nbsp;            List&lt;Predicate&gt; predicates = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;            Join&lt;Pessoa, Chave&gt; join = root.join(&quot;chaves&quot;, JoinType.LEFT);</b>
+&nbsp;
+<b class="fc">&nbsp;            if (StringUtils.isNotEmpty(search.tipoChave())) {</b>
+<b class="fc">&nbsp;                predicates.add(criteria.equal(join.get(&quot;tipoChave&quot;), search.tipoChave()));</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            if (StringUtils.isNotEmpty(search.nomeCorrentista())) {</b>
+<b class="fc">&nbsp;                predicates.add(criteria.like(root.get(&quot;nome&quot;), &quot;%&quot; + search.nomeCorrentista() + &quot;%&quot;));</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            if (Objects.nonNull(search.agencia())) {</b>
+<b class="fc">&nbsp;                predicates.add(criteria.equal(root.get(&quot;agencia&quot;), search.agencia()));</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            if (Objects.nonNull(search.conta())) {</b>
+<b class="fc">&nbsp;                predicates.add(criteria.equal(root.get(&quot;conta&quot;), search.conta()));</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            if (Objects.nonNull(search.dataInclusao())) {</b>
+<b class="fc">&nbsp;                predicates.add(criteria.equal(join.get(&quot;dataInclusao&quot;), search.dataInclusao()));</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            if (Objects.nonNull(search.dataInativacao())) {</b>
+<b class="fc">&nbsp;                predicates.add(criteria.equal(join.get(&quot;dataDesativacao&quot;), search.dataInativacao()));</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            predicates.add(criteria.equal(join.get(&quot;status&quot;), Status.ATIVO));</b>
+<b class="fc">&nbsp;            return criteria.and(predicates.toArray(new Predicate[0]));</b>
+&nbsp;        };
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-13 12:40</div>
+</div>
+</body>
+</html>

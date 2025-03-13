@@ -1,0 +1,162 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PessoaPatchDTO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.itau.pix.dtos</a>
+</div>
+
+<h1>Coverage Summary for Class: PessoaPatchDTO (br.com.itau.pix.dtos)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">PessoaPatchDTO$PessoaPatchDTOBuilder</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.itau.pix.dtos;
+&nbsp;
+&nbsp;
+&nbsp;import br.com.itau.pix.dtos.interfaces.Json;
+&nbsp;import br.com.itau.pix.enums.TipoConta;
+&nbsp;import br.com.itau.pix.validators.interfaces.ValidaEnum;
+&nbsp;import com.fasterxml.jackson.annotation.JsonRootName;
+&nbsp;import io.swagger.v3.oas.annotations.media.Schema;
+&nbsp;import jakarta.persistence.EnumType;
+&nbsp;import jakarta.persistence.Enumerated;
+&nbsp;import jakarta.validation.constraints.*;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.Builder;
+&nbsp;import lombok.Data;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import org.springframework.validation.annotation.Validated;
+&nbsp;
+&nbsp;@Data
+&nbsp;@Validated
+&nbsp;@JsonRootName(&quot;PessoaPatchJson&quot;)
+&nbsp;@Schema(description = &quot;Pessoa&quot;)
+<b class="nc">&nbsp;@Builder(builderMethodName = &quot;of&quot;)</b>
+&nbsp;@AllArgsConstructor
+&nbsp;@NoArgsConstructor
+&nbsp;public class PessoaPatchDTO implements Json {
+&nbsp;
+&nbsp;    @NotEmpty(message = &quot;O nome do correntista é obrigatório&quot;)
+&nbsp;    @Size(max = 30, message = &quot;O nome do correntista deve ter até 30 caracteres&quot;)
+&nbsp;    private String nome;
+&nbsp;
+&nbsp;    @Size(max = 45, message = &quot;O sobrenome do correntista deve ter até 45 caracteres&quot;)
+&nbsp;    private String sobrenome;
+&nbsp;
+&nbsp;    @Enumerated(EnumType.STRING)
+&nbsp;    private String tipoPessoa;
+&nbsp;
+&nbsp;    @Enumerated(EnumType.STRING)
+&nbsp;    @ValidaEnum(message = &quot;Valor inválido para o Tipo de Conta. Somente são permitidos os seguintes valores: CORRENTE / POUPANÇA&quot;, enumClass = TipoConta.class)
+&nbsp;    @NotNull(message = &quot;O tipo de conta é obrigatório&quot;)
+&nbsp;    private String tipoConta;
+&nbsp;
+&nbsp;    @NotNull(message = &quot;A agência é obrigatória&quot;)
+&nbsp;    @Min(value = 0, message = &quot;A agência deve ter um número válido&quot;)
+&nbsp;    @Digits(integer = 4, fraction = 0, message = &quot;A agência deve ter até 4 digítos&quot;)
+&nbsp;    private Integer agencia;
+&nbsp;
+&nbsp;    @NotNull(message = &quot;A conta é obrigatória&quot;)
+&nbsp;    @Min(value = 0, message = &quot;A agência deve ter um número válido&quot;)
+&nbsp;    @Digits(integer = 8, fraction = 0, message = &quot;A conta deve ter até 8 digítos&quot;)
+&nbsp;    private Integer conta;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-13 12:40</div>
+</div>
+</body>
+</html>

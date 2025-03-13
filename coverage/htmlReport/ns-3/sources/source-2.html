@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PessoaConverter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.itau.pix.converters</a>
+</div>
+
+<h1>Coverage Summary for Class: PessoaConverter (br.com.itau.pix.converters)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PessoaConverter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.itau.pix.converters;
+&nbsp;
+&nbsp;import br.com.itau.pix.converters.interfaces.Converter;
+&nbsp;import br.com.itau.pix.converters.interfaces.DtoConverter;
+&nbsp;import br.com.itau.pix.dtos.PessoaDTO;
+&nbsp;import br.com.itau.pix.entities.Pessoa;
+&nbsp;import br.com.itau.pix.enums.TipoConta;
+&nbsp;import br.com.itau.pix.enums.TipoPessoa;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;@Service
+&nbsp;@RequiredArgsConstructor
+&nbsp;public class PessoaConverter implements DtoConverter&lt;Pessoa, PessoaDTO&gt; {
+&nbsp;
+&nbsp;    private final ChaveConverter chaveConverter;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Pessoa toEntity(PessoaDTO dto) {
+<b class="fc">&nbsp;        return Pessoa.of()</b>
+<b class="fc">&nbsp;                .tipoPessoa(Converter.to(dto.getTipoPessoa(), TipoPessoa::valueOf))</b>
+<b class="fc">&nbsp;                .tipoConta(Converter.to(dto.getTipoConta(), TipoConta::valueOf))</b>
+<b class="fc">&nbsp;                .nome(dto.getNome())</b>
+<b class="fc">&nbsp;                .sobrenome(dto.getSobrenome())</b>
+<b class="fc">&nbsp;                .conta(dto.getConta())</b>
+<b class="fc">&nbsp;                .agencia(dto.getAgencia())</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public PessoaDTO toDto(Pessoa entity) {
+<b class="fc">&nbsp;        return PessoaDTO.of()</b>
+<b class="fc">&nbsp;                .id(entity.getId().toString())</b>
+<b class="fc">&nbsp;                .tipoPessoa(entity.getTipoPessoa().getTipo())</b>
+<b class="fc">&nbsp;                .tipoConta(entity.getTipoConta().getTipo())</b>
+<b class="fc">&nbsp;                .agencia(entity.getAgencia())</b>
+<b class="fc">&nbsp;                .conta(entity.getConta())</b>
+<b class="fc">&nbsp;                .nome(entity.getNome())</b>
+<b class="fc">&nbsp;                .sobrenome(entity.getSobrenome())</b>
+<b class="fc">&nbsp;                .chaves(Converter.toList(entity.getChaves(), chaveConverter))</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-13 12:40</div>
+</div>
+</body>
+</html>

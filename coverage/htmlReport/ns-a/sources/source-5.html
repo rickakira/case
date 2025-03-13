@@ -1,0 +1,202 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ChaveService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.itau.pix.services</a>
+</div>
+
+<h1>Coverage Summary for Class: ChaveService (br.com.itau.pix.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChaveService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ChaveService$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.itau.pix.services;
+&nbsp;
+&nbsp;import br.com.itau.pix.converters.ChaveConverter;
+&nbsp;import br.com.itau.pix.converters.interfaces.Converter;
+&nbsp;import br.com.itau.pix.dtos.ChaveDTO;
+&nbsp;import br.com.itau.pix.enums.Status;
+&nbsp;import br.com.itau.pix.repositories.ChaveRepository;
+&nbsp;import br.com.itau.pix.repositories.specifications.ChaveSpecification;
+&nbsp;import br.com.itau.pix.validators.interfaces.Exists;
+&nbsp;import br.com.itau.pix.validators.interfaces.LimiteChave;
+&nbsp;import jakarta.validation.Valid;
+&nbsp;import jakarta.validation.constraints.NotNull;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.context.ApplicationContext;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.transaction.annotation.Transactional;
+&nbsp;import org.springframework.util.CollectionUtils;
+&nbsp;import org.springframework.validation.annotation.Validated;
+&nbsp;
+&nbsp;import java.time.LocalDate;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@Validated
+&nbsp;@Service
+&nbsp;@Transactional
+&nbsp;@RequiredArgsConstructor
+&nbsp;public class ChaveService {
+&nbsp;
+&nbsp;    private final ApplicationContext context;
+&nbsp;    private final ChaveRepository repository;
+&nbsp;    private final ChaveConverter converter;
+&nbsp;
+&nbsp;    @Valid
+&nbsp;    public UUID save(@NotNull @Exists @LimiteChave String idPessoa, @Valid @NotNull ChaveDTO dto) {
+<b class="fc">&nbsp;        PixStrategy strategy = (PixStrategy) context.getBean(dto.getTipoChave());</b>
+&nbsp;
+<b class="fc">&nbsp;        return strategy.save(idPessoa, dto);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Optional&lt;ChaveDTO&gt; delete(@NotNull String id) {
+<b class="fc">&nbsp;        var entity = repository.findById(UUID.fromString(id));</b>
+&nbsp;
+<b class="fc">&nbsp;        Optional&lt;ChaveDTO&gt; chaveDTO = Optional.empty();</b>
+<b class="pc">&nbsp;        if (entity.isPresent()) {</b>
+<b class="fc">&nbsp;            var chave = entity.get();</b>
+<b class="fc">&nbsp;            chave.setDataDesativacao(LocalDate.now());</b>
+<b class="fc">&nbsp;            chave.setStatus(Status.INATIVO);</b>
+<b class="fc">&nbsp;            repository.save(chave);</b>
+&nbsp;
+<b class="fc">&nbsp;            chaveDTO = Optional.of(chave).map(converter);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return chaveDTO;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;ChaveDTO&gt; getChavesBy(@NotNull String idPessoa) {
+<b class="fc">&nbsp;        var specification = ChaveSpecification.filterBy(idPessoa);</b>
+<b class="fc">&nbsp;        var entities = repository.findAll(specification);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (CollectionUtils.isEmpty(entities)) {</b>
+<b class="fc">&nbsp;            return List.of();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return Converter.toList(entities, converter);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-13 12:40</div>
+</div>
+</body>
+</html>

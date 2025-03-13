@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ChaveSpecification</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.itau.pix.repositories.specifications</a>
+</div>
+
+<h1>Coverage Summary for Class: ChaveSpecification (br.com.itau.pix.repositories.specifications)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChaveSpecification</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.itau.pix.repositories.specifications;
+&nbsp;
+&nbsp;import br.com.itau.pix.entities.Chave;
+&nbsp;import br.com.itau.pix.entities.Pessoa;
+&nbsp;import jakarta.persistence.criteria.Join;
+&nbsp;import jakarta.persistence.criteria.JoinType;
+&nbsp;import jakarta.persistence.criteria.Predicate;
+&nbsp;import lombok.AccessLevel;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import org.springframework.data.jpa.domain.Specification;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@NoArgsConstructor(access = AccessLevel.PRIVATE)
+&nbsp;public class ChaveSpecification {
+&nbsp;
+&nbsp;    public static Specification&lt;Chave&gt; filterBy(String idPessoa) {
+<b class="fc">&nbsp;        return (root, query, criteria) -&gt; {</b>
+<b class="fc">&nbsp;            List&lt;Predicate&gt; predicates = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;            Join&lt;Chave, Pessoa&gt; join = root.join(&quot;pessoa&quot;, JoinType.INNER);</b>
+&nbsp;
+<b class="fc">&nbsp;            predicates.add(criteria.equal(join.get(&quot;id&quot;), UUID.fromString(idPessoa)));</b>
+&nbsp;
+<b class="fc">&nbsp;            return criteria.and(predicates.toArray(new Predicate[0]));</b>
+&nbsp;        };
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-13 12:40</div>
+</div>
+</body>
+</html>
